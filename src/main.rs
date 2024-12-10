@@ -1,7 +1,6 @@
 use std::env;
 use std::fs;
 
-
 fn main() {
     let args: Vec<String> = env::args().collect();
     //dbg!(args);
@@ -15,7 +14,6 @@ fn main() {
         .expect("Should have been able to read the file");
 }
 
-
 struct Config{
     query: String,
     file_path: String,
@@ -23,6 +21,10 @@ struct Config{
 
 impl Config{
     fn new(args: &[String]) -> Config {
+        if args.len() < 3 {
+            panic!("not enough arguments");
+        }
+
         let query = args[1].clone();
         let file_path = args[2].clone();
 
