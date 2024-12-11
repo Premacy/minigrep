@@ -4,7 +4,6 @@ use std::process;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    //dbg!(args);
 
     let config = Config::build(&args).unwrap_or_else(|err| {
         println!("Problem parsing arguments: {err}");
@@ -15,8 +14,14 @@ fn main() {
     println!("Searching for {}", config.query);
     println!("In file {}", config.file_path);
 
+    run(config);
+}
+
+fn run(config: Config){
     let contents = fs::read_to_string(config.file_path)
         .expect("Should have been able to read the file");
+
+    print!("Contents {}", contents);
 }
 
 struct Config{
